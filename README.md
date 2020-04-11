@@ -7,6 +7,13 @@ networkx
 ```
 
 ## usage
+Creating a new knowledge graph and save
 ```
-
+>>> know=knowledge()
+>>> know.connect("Newton", "Isaac Newton")
+>>> print(know.graph["Newton"])
+{'Isaac Newton': {'w': 1}}
+>>> print(know.associate("Newton"))
+{'Isaac Newton'}
+>>> know.save("knowledge.nx")
 ```
