@@ -20,75 +20,64 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-
 class knowledge:
-    def create():
-        k_net = nx.Graph()
-        return k_net
-    
-    def connect(k_net, a, b):
-        k_net.add_edge(*(a, b))
-        k_net[a][b]["w"]=1
-        return k_net
+    def __init__(self):
+        self.graph = nx.Graph()
 
-    def weight_plus(k_net, a, b):
+    def connect(self, a, b):
+        self.graph.add_edge(*(a, b))
+        self.graph[a][b]["w"]=1
+
+    def weight_plus(self, a, b):
         try:
-            w=k_net[a][b]["w"]
+            w=self.graph[a][b]["w"]
         except:
-            k_net[a][b]["w"]=1
+            self.graph[a][b]["w"]=1
             w=1
-        k_net[a][b]["w"]=w+1
-        return k_net
+        self.graph[a][b]["w"]=w+1
 
-    def delete_connection(k_net, a, b):
-        k_net.remove_edge(a, b)
-        return k_net
+    def delete_connection(self, a, b):
+        self.graph.remove_edge(a, b)
 
-    def delete_concept(k_net, a):
-        k_net.remove_node(a)
-        return k_net
+    def delete_concept(self, a):
+        self.graph.remove_node(a)
 
-    def save(k_net, filename):
-        nx.write_graphml(k_net, filename)
-        return None
+    def save(self, filename):
+        nx.write_graphml(self.graph, filename)
 
-    def load(filename):        
-        return nx.read_graphml(filename)
+    def load(self, filename):
+        self.graph = nx.read_graphml(filename)
     
 
-    def associate(k_net, a):
+    def associate(self, a):
         try:
-            return set(k_net[a])
+            return set(self.graph[a])
         except:
             return set([])
 
-    def intersection(k_net, a, b):
-        set1=know.associate(k_net, a)
-        set2=know.associate(k_net, b)
+    def intersection(self, a, b):
+        set1=know.associate(a)
+        set2=know.associate(b)
 
         return set1.intersection(set2)
 
-    def plot(k_net):
-        nx.draw(k_net, with_labels=True)
+    def plot(self):
+        nx.draw(self.graph, with_labels=True)
         plt.show()
         return None
 
-    def summary(k_net):
-        print("number of concepts: %d" % (len(k_net)))
-        print("number of connections:", len(k_net.edges))
+    def summary(self):
+        print("number of concepts: %d" % (len(self.graph)))
+        print("number of connections:", len(self.graph.edges))
         return None
 
 
-def load_knowledge():
-    know=knowledge
-    k_net=know.load("knowledge_graph.npy")
-    
-    return k_net
+if __name__=="__main__":
+    know=knowledge()
 
+    know.connect("Newton", "Isaac Newton")
 
-know=knowledge
+    print(know.graph["Newton"])
+    print(know.associate("Newton"))
 
-#k_net=know.load("knowledge_graph.nx")
-
-
-# know.save(k_net, "knowledge_graph")
+    know.save("knowledge.nx")
