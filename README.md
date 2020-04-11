@@ -25,5 +25,5 @@ Here is the other way of representing knowledge. It represents the relationship 
 >>> know2.connect("clock", "is", "a mechanical or electrical device for measuring time")
 >>> know2.knowledge("clock")
 clock is a mechanical or electrical device for measuring time
->>> know2.save(knowledge.know2)
+>>> know2.save("knowledge.know2")
 ```
