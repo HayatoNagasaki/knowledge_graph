@@ -4,6 +4,7 @@ This knowledge graph is based on networkx module.
 
 ## requirement
 ```
+matplotlib
 networkx
 ```
 
