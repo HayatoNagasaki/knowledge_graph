@@ -1,5 +1,6 @@
 # knowledge_graph_with_networkx
-This is an attempt to represent knowledge by associating. This gives what a concept is related to and how strong the connection is.
+This is an attempt to represent knowledge by associating, and it gives what a concept is related to and how strong the connection is. It is not representing the relationship between concepts. Also, the association is trainable with neural networks.
+This knowledge graph is based on networkx module.
 
 ## requirement
 ```
