@@ -53,8 +53,8 @@ class associate:
             return set([])
 
     def intersection(self, a, b):
-        set1=know.associate(a)
-        set2=know.associate(b)
+        set1=self.associate(a)
+        set2=self.associate(b)
 
         return set1.intersection(set2)
 
